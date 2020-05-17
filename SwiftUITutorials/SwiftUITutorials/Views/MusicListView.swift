@@ -12,10 +12,14 @@ struct MusicListView: View {
     var body: some View {
         List(musicGenres) { musicGenre in
            NavigationLink(destination: MusicDetailView()) {
-               MusicCell(genre: musicGenre.genre)
+                MusicCell(
+                    genre: musicGenre.genre,
+                    musicIconName: "music-icon",
+                    isExpanded: false
+                )
            }
         }
-       .navigationBarTitle("Genre List Tap Move")
+       .navigationBarTitle("List Tap Move")
     }
 }
 

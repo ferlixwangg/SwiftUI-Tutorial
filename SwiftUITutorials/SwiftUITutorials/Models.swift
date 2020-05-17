@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal struct MusicGenre: Identifiable {
+internal struct MusicGenre: Identifiable, Hashable {
     let id: Int
     let genre: String
 }

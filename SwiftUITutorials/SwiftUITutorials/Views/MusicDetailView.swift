@@ -9,8 +9,28 @@
 import SwiftUI
 
 struct MusicDetailView: View {
+    @State private var selection: Set<MusicGenre> = []
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List(musicGenres) { musicGenre in
+            MusicCell(
+                genre: musicGenre.genre,
+                musicIconName: "music-icon-2",
+                isExpanded: self.selection.contains(musicGenre)
+            )
+            .onTapGesture {
+                self.selectDeselectCell(musicGenre)
+            }
+        }
+        .navigationBarTitle("List Expand Collapse")
+    }
+    
+    private func selectDeselectCell(_ genre: MusicGenre) {
+        if selection.contains(genre) {
+            selection.remove(genre)
+        } else {
+            selection.insert(genre)
+        }
     }
 }
 
