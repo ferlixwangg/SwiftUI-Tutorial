@@ -22,7 +22,8 @@ struct MusicCell: View {
                 Text(genre)
                 Spacer()
             }
-            .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 0))
+            .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 8))
+            .contentShape(Rectangle())
             
             if isExpanded {
                 Text("This cell is expanded")
@@ -39,7 +40,7 @@ struct MusicCell_Previews: PreviewProvider {
         Group {
             MusicCell(genre: "Genre 1", musicIconName: "music-icon", isExpanded: false)
             MusicCell(genre: "Genre 2", musicIconName: "music-icon", isExpanded: false)
-            MusicCell(genre: "Genre 3", musicIconName: "music-icon", isExpanded: true)
+            MusicCell(genre: "Genre 3", musicIconName: "music-icon-2", isExpanded: true)
         }
         .previewLayout(.fixed(width: 300, height: 100))
     }

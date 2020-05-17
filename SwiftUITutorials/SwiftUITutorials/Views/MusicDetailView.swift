@@ -12,16 +12,33 @@ struct MusicDetailView: View {
     @State private var selection: Set<MusicGenre> = []
     
     var body: some View {
-        List(musicGenres) { musicGenre in
-            MusicCell(
-                genre: musicGenre.genre,
-                musicIconName: "music-icon-2",
-                isExpanded: self.selection.contains(musicGenre)
-            )
-            .onTapGesture {
-                self.selectDeselectCell(musicGenre)
+        ScrollView {
+            ForEach(musicGenres) { musicGenre in
+                MusicCell(
+                    genre: musicGenre.genre,
+                    musicIconName: "music-icon-2",
+                    isExpanded: self.selection.contains(musicGenre)
+                )
+                .onTapGesture {
+                    self.selectDeselectCell(musicGenre)
+                }
+                .modifier(ListRowModifier())
+                .animation(.linear(duration: 0.3))
             }
         }
+        
+//        List(musicGenres) { musicGenre in
+//            MusicCell(
+//                genre: musicGenre.genre,
+//                musicIconName: "music-icon-2",
+//                isExpanded: self.selection.contains(musicGenre)
+//            )
+//            .onTapGesture {
+//                self.selectDeselectCell(musicGenre)
+//            }
+//            .animation(.linear(duration: 0.3))
+//        }
+            
         .navigationBarTitle("List Expand Collapse")
     }
     
@@ -37,5 +54,14 @@ struct MusicDetailView: View {
 struct MusicDetailView_Previews: PreviewProvider {
     static var previews: some View {
         MusicDetailView()
+    }
+}
+
+struct ListRowModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        Group {
+            content
+            Divider()
+        }.offset(x: 20)
     }
 }
