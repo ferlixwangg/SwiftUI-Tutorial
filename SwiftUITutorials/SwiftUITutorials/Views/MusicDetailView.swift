@@ -10,10 +10,27 @@ import SwiftUI
 
 struct MusicDetailView: View {
     @State private var selection: Set<MusicGenre> = []
+    @State private var localMusicGenres = [
+        MusicGenre(id: 1, genre: "Jazz"),
+        MusicGenre(id: 2, genre: "Blues"),
+        MusicGenre(id: 3, genre: "Pop"),
+        MusicGenre(id: 4, genre: "K-Pop"),
+        MusicGenre(id: 5, genre: "Funk"),
+        MusicGenre(id: 6, genre: "Rock"),
+        MusicGenre(id: 7, genre: "Classical"),
+        MusicGenre(id: 8, genre: "Hip-Hop"),
+        MusicGenre(id: 9, genre: "Reggae"),
+        MusicGenre(id: 10, genre: "Instrument"),
+        MusicGenre(id: 11, genre: "Soul"),
+        MusicGenre(id: 12, genre: "RnB"),
+        MusicGenre(id: 13, genre: "Country"),
+        MusicGenre(id: 14, genre: "Easy Listening"),
+        MusicGenre(id: 15, genre: "Orchestra")
+    ]
     
     var body: some View {
-        ScrollView {
-            ForEach(musicGenres) { musicGenre in
+        List {
+            ForEach(localMusicGenres) { musicGenre in
                 MusicCell(
                     genre: musicGenre.genre,
                     musicIconName: "music-icon-2",
@@ -22,24 +39,14 @@ struct MusicDetailView: View {
                 .onTapGesture {
                     self.selectDeselectCell(musicGenre)
                 }
-                .modifier(ListRowModifier())
                 .animation(.linear(duration: 0.3))
             }
+            Text("")
+                .onAppear {
+                    self.loadMore()
+                }
         }
-        
-//        List(musicGenres) { musicGenre in
-//            MusicCell(
-//                genre: musicGenre.genre,
-//                musicIconName: "music-icon-2",
-//                isExpanded: self.selection.contains(musicGenre)
-//            )
-//            .onTapGesture {
-//                self.selectDeselectCell(musicGenre)
-//            }
-//            .animation(.linear(duration: 0.3))
-//        }
-            
-        .navigationBarTitle("List Expand Collapse")
+        .navigationBarTitle("Exp-Col & Lo-Mo")
     }
     
     private func selectDeselectCell(_ genre: MusicGenre) {
@@ -49,19 +56,21 @@ struct MusicDetailView: View {
             selection.insert(genre)
         }
     }
+    
+    private func loadMore() {
+        let totalCount = localMusicGenres.count
+        
+        let additionalGenres = (1 ... 10).map { index -> MusicGenre in
+            MusicGenre(id: totalCount + index, genre: "New Genre \(totalCount + index)")
+        }
+        
+        localMusicGenres.append(contentsOf: additionalGenres)
+
+    }
 }
 
 struct MusicDetailView_Previews: PreviewProvider {
     static var previews: some View {
         MusicDetailView()
-    }
-}
-
-struct ListRowModifier: ViewModifier {
-    func body(content: Content) -> some View {
-        Group {
-            content
-            Divider()
-        }.offset(x: 20)
     }
 }

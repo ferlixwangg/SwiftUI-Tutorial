@@ -13,7 +13,7 @@ internal struct MusicGenre: Identifiable, Hashable {
     let genre: String
 }
 
-internal let musicGenres: [MusicGenre] = [
+internal var musicGenres = [
     MusicGenre(id: 1, genre: "Jazz"),
     MusicGenre(id: 2, genre: "Blues"),
     MusicGenre(id: 3, genre: "Pop"),
@@ -21,5 +21,12 @@ internal let musicGenres: [MusicGenre] = [
     MusicGenre(id: 5, genre: "Funk"),
     MusicGenre(id: 6, genre: "Rock"),
     MusicGenre(id: 7, genre: "Classical"),
-    MusicGenre(id: 8, genre: "Hip-Hop")
+    MusicGenre(id: 8, genre: "Hip-Hop"),
+    MusicGenre(id: 9, genre: "Reggae"),
+    MusicGenre(id: 10, genre: "Instrument"),
+    MusicGenre(id: 11, genre: "Soul"),
+    MusicGenre(id: 12, genre: "RnB"),
+    MusicGenre(id: 13, genre: "Country"),
+    MusicGenre(id: 14, genre: "Easy Listening"),
+    MusicGenre(id: 15, genre: "Orchestra")
 ]
