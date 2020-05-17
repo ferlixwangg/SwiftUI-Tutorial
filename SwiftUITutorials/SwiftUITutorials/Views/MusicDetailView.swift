@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  MusicDetailView.swift
 //  SwiftUITutorials
 //
 //  Created by Ferlix Yanto Wang on 17/05/20.
@@ -8,14 +8,14 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MusicDetailView: View {
     var body: some View {
-        Text("Hello, World!")
+        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct MusicDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        MusicDetailView()
     }
 }
